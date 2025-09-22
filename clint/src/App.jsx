@@ -16,7 +16,7 @@ const [editingTodo , setEditingTodo] = useState('')
 
 const fetchTodos = async () =>{
   try {
-    const res = await axios.get("http://localhost:5000/api/todos")
+    const res = await axios.get("https://complted-todo-app-backend.onrender.com/api/todos")
     setTodos(res.data)
   } catch (error) {
     console.log("error fetching todo" ,error)
@@ -29,7 +29,7 @@ useEffect(() =>{
 
 const addTodo = () => {
     if (!text.trim()) return;
-    axios.post(`http://localhost:5000/api/todos`, { text })
+    axios.post(`https://complted-todo-app-backend.onrender.com/api/todos`, { text })
       .then(res => {
         setTodos([...todos, res.data]);
         setText('');
@@ -46,7 +46,7 @@ const addTodo = () => {
   // }
 const editTodoText = (id)=>{
   if(!editText.trim()) return
-   axios.put(`http://localhost:5000/api/todos/${id}` ,{
+   axios.put(`https://complted-todo-app-backend.onrender.com/api/todos/${id}` ,{
     text:editText
   })
   .then(res =>{
@@ -58,7 +58,7 @@ const editTodoText = (id)=>{
 }
 
  const deleteTodo = (id) =>{
-  axios.delete(`http://localhost:5000/api/todos/${id}`)
+  axios.delete(`https://complted-todo-app-backend.onrender.com/api/todos/${id}`)
   .then(() => setTodos(todos.filter(todo => todo._id !== id)))
 }
 
