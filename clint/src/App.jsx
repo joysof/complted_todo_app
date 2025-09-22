@@ -90,7 +90,7 @@ const startEditing =(todo) =>{
                   <div key={todo._id}>
                     { editingTodo === todo._id ? (
                       <div className='flex'>
-                        <input type="text" className=' py-2 rounded mt-3 w-[300px] sm:w-[500px] pl-2  bg-[#f7f7f7]' value={editText} onChange={(e) =>setEditText(e.target.value)}/>
+                        <input type="text" className='outline-none py-2 rounded mt-3 w-[300px] sm:w-[500px] pl-2  bg-[#f7f7f7]' value={editText} onChange={(e) =>setEditText(e.target.value)}/>
                         <div className=' bg-[#f7f7f7] pr-3 mt-3 flex items-center justify-center  gap-3'>
                           <button className='bg-[#b5dafc] rounded-lg w-8 h-8  flex items-center justify-center' onClick={()=>editTodoText(editingTodo)}> <MdOutlineDone/></button>
                           <button className='bg-red-200 w-8 h-8 rounded-lg items-center justify-center flex' onClick={()=>{setEditingTodo(null) ;setEditText('')}}><FaTrash/></button>
