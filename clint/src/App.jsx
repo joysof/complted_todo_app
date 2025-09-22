@@ -83,7 +83,7 @@ const startEditing =(todo) =>{
             <div>
               <p className='bg-white mt-3 px-2 py-1 rounded '>No Todo</p>
             </div>
-          ):<div className='w-[500px]'>
+          ):<div className='w-[300px] sm:w-[500px]'>
             <h2 className='mt-2 capitalize text-blue-500'>All task list</h2>
               {
                 todos.map((todo) =>(
