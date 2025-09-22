@@ -68,39 +68,42 @@ const startEditing =(todo) =>{
 }
 
   return (
-    <div className='bg-blue-400 flex flex-1 flex-col items-center pt-5 w-full h-dvh'>
-      <div className='p-3 pb-5 bg-white border rounded  shadow w-[300px] sm:w-[400px]'>
-         <h1 className='text-3xl text-center mb-10 text-blue-400'>Todo App</h1>
+    <div className='bg-[#eeeeee] flex flex-1 flex-col items-center pt-5 w-full h-dvh'>
+      <div className='p-3 pb-5 rounded  w-[300px] sm:w-[500px] gap-4'>
+         <h1 className='text-3xl text-center mb-10 '>Todo App</h1>
 
-        <input type="text" className='border-b-2 border-blue-400 outline-none pl-2' placeholder='Enter a Todo' value={text} onChange={e => setText(e.target.value)}/>
-        <button type='submit' className='  capitalize bg-blue-400 px-6 ms-2  py-1 rounded hover:bg-blue-600 text-white' onClick={addTodo}>add</button>
+        <div className='flex items-center gap-6'>
+        <input type="text" className='outline-none px-2 rounded-full w-[300px] h-[45px] bg-[#f7f7f7] ' placeholder='write Task hear' value={text} onChange={e => setText(e.target.value)}/>
+        <button type='submit' className='  capitalize bg-blue-700 px-10 ms-2  py-1 rounded-full hover:bg-blue-600 text-white  h-[45px] ' onClick={addTodo}>add task</button>
+        </div>
       </div>
       <div>
         {
           todos.length === 0?(
             <div>
-              <p className='bg-white w-[300px] sm:w-[400px] mt-3 px-2 py-1 rounded '>No Todo</p>
+              <p className='bg-white mt-3 px-2 py-1 rounded '>No Todo</p>
             </div>
-          ):<div>
+          ):<div className='w-[500px]'>
+            <h2 className='mt-2 capitalize text-blue-500'>All task list</h2>
               {
                 todos.map((todo) =>(
                   <div key={todo._id}>
                     { editingTodo === todo._id ? (
                       <div className='flex'>
-                        <input type="text"className='bg-white py-2 rounded pl-2 mt-3 w-[300px] sm:w-[400px]' value={editText} onChange={(e) =>setEditText(e.target.value)}/>
-                        <div className='ml-[-60px] mt-3 flex gap-3'>
-                          <button onClick={()=>editTodoText(editingTodo)}><MdOutlineDone/></button>
-                          <button onClick={()=>{setEditingTodo(null) ;setEditText('')}}><IoClose/></button>
+                        <input type="text" className=' py-2 rounded mt-3 w-[300px] sm:w-[500px] pl-2  bg-[#f7f7f7]' value={editText} onChange={(e) =>setEditText(e.target.value)}/>
+                        <div className=' bg-[#f7f7f7] pr-3 mt-3 flex items-center justify-center  gap-3'>
+                          <button className='bg-[#b5dafc] rounded-lg w-8 h-8  flex items-center justify-center' onClick={()=>editTodoText(editingTodo)}> <MdOutlineDone/></button>
+                          <button className='bg-red-200 w-8 h-8 rounded-lg items-center justify-center flex' onClick={()=>{setEditingTodo(null) ;setEditText('')}}><FaTrash/></button>
                         </div>
                       </div>
                       
                     ):(
                      <div className='flex justify-center items-center'>
-                      <span className='bg-white py-2 rounded pl-2 mt-3 w-[300px] sm:w-[400px]'>{todo.text}
+                      <span className='bg-[#f7f7f7] py-2 rounded pl-2 mt-3 w-[300px] sm:w-[500px]'>{todo.text}
                       </span>
-                      <div className='ml-[-60px] mt-3 flex gap-3'>
-                        <button className=' ' onClick={()=>startEditing(todo)}><MdModeEditOutline/></button>
-                          <button className='' onClick={()=>deleteTodo(todo._id)}><FaTrash/></button>
+                      <div className='mt-3 bg-[#f7f7f7] flex items-center justify-center pr-3 py-1 gap-3'>
+                        <button className='bg-[#b5dafc] h-8 w-8 flex justify-center items-center rounded-lg' onClick={()=>startEditing(todo)}><MdModeEditOutline/></button>
+                          <button className='bg-red-200 h-8 w-8 flex justify-center items-center rounded-lg' onClick={()=>deleteTodo(todo._id)}><FaTrash/></button>
                       </div>
                       <div>
                       
