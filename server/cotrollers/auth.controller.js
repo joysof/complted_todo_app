@@ -1,6 +1,6 @@
 const  jwt = require("jsonwebtoken");
 const  bcrypt =require("bcrypt");
-const User = require("../Models/user.schema")
+const User = require('../Models/user.schema.js')
 const signup = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -37,3 +37,5 @@ const login = async (req, res) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+
+module.exports = {signup , login}

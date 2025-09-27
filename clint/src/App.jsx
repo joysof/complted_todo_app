@@ -17,16 +17,23 @@ const [editingTodo , setEditingTodo] = useState('')
 const fetchTodos = async () =>{
   try {
     const res = await axios.get("http://localhost:5000/api/todos")
-    setTodos(res.data)
+    if (Array.isArray(res.data)) {
+      setTodos(res.data)
+      
+    }else{
+      console.warn("Not an array")
+      setTodos([])
+    }
   } catch (error) {
     console.log("error fetching todo" ,error)
+    setTodos([])
   }
 }
 
 useEffect(() =>{
   fetchTodos()
 },[])
-
+console.log(todos)
 const addTodo = () => {
     if (!text.trim()) return;
     axios.post(`http://localhost:5000/api/todos`, { text })
@@ -37,13 +44,7 @@ const addTodo = () => {
       .catch(err => console.error("Error adding todo:", err));
   };
 
-  // const updateTodo = (id , completed) =>{
-  //   axios.put(`http://localhost:5000/api/todos/${id}` , {completed:!completed})
-  //   .then(res => {
-  //     setTodos(todos.map(todo => todo._id ===id ? res.data : todo))
-  //   })
-  //   .catch(err =>console.log("update todo error" ,err))
-  // }
+
 const editTodoText = (id)=>{
   if(!editText.trim()) return
    axios.put(`http://localhost:5000/api/todos/${id}` ,{
@@ -79,6 +80,7 @@ const startEditing =(todo) =>{
       </div>
       <div>
         {
+        
           todos.length === 0?(
             <div>
               <p className='bg-white mt-3 px-2 py-1 rounded '>No Todo</p>
