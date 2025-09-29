@@ -16,8 +16,7 @@ const [editingTodo , setEditingTodo] = useState('')
 
 const fetchTodos = async () =>{
   try {
-<<<<<<< HEAD
-    const res = await axios.get("http://localhost:5000/api/todos")
+    const res = await axios.get("https://complted-todo-app-backend.onrender.com/api/todos")
     if (Array.isArray(res.data)) {
       setTodos(res.data)
       
@@ -25,10 +24,9 @@ const fetchTodos = async () =>{
       console.warn("Not an array")
       setTodos([])
     }
-=======
-    const res = await axios.get("https://complted-todo-app-backend.onrender.com/api/todos")
+
+   
     setTodos(res.data)
->>>>>>> ca6029d4f6c68c21682ecf23f64613c0aa141528
   } catch (error) {
     console.log("error fetching todo" ,error)
     setTodos([])
