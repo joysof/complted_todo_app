@@ -21,8 +21,9 @@ app.use((err, req, res, next) => {
 })
 // api end point 
 
-app.use("/api/todos" ,authMiddleware,todoRoutes)
+app.use("/api/todos",todoRoutes)
 app.use("/api/user" ,userRoute )
+
 
 app.listen(port , () =>{
     console.log(`server is running ${port}`)
