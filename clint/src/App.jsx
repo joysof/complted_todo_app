@@ -24,9 +24,6 @@ const fetchTodos = async () =>{
       console.warn("Not an array")
       setTodos([])
     }
-
-   
-    setTodos(res.data)
   } catch (error) {
     console.log("error fetching todo" ,error)
     setTodos([])
@@ -84,14 +81,14 @@ const startEditing =(todo) =>{
       <div>
         {
         
-          todos.length === 0?(
+         todos.length === 0?(
             <div>
               <p className='bg-white mt-3 px-2 py-1 rounded '>No Todo</p>
             </div>
           ):<div className='w-[300px] sm:w-[500px]'>
             <h2 className='mt-2 capitalize text-blue-500'>All task list</h2>
               {
-                todos.map((todo) =>(
+               Array.isArray(todos) && todos.map((todo) =>(
                   <div key={todo._id}>
                     { editingTodo === todo._id ? (
                       <div className='flex'>
