@@ -16,6 +16,7 @@ const [editingTodo , setEditingTodo] = useState('')
 
 const fetchTodos = async () =>{
   try {
+<<<<<<< HEAD
     const res = await axios.get("http://localhost:5000/api/todos")
     if (Array.isArray(res.data)) {
       setTodos(res.data)
@@ -24,6 +25,10 @@ const fetchTodos = async () =>{
       console.warn("Not an array")
       setTodos([])
     }
+=======
+    const res = await axios.get("https://complted-todo-app-backend.onrender.com/api/todos")
+    setTodos(res.data)
+>>>>>>> ca6029d4f6c68c21682ecf23f64613c0aa141528
   } catch (error) {
     console.log("error fetching todo" ,error)
     setTodos([])
@@ -36,7 +41,7 @@ useEffect(() =>{
 console.log(todos)
 const addTodo = () => {
     if (!text.trim()) return;
-    axios.post(`http://localhost:5000/api/todos`, { text })
+    axios.post(`https://complted-todo-app-backend.onrender.com/api/todos`, { text })
       .then(res => {
         setTodos([...todos, res.data]);
         setText('');
@@ -47,7 +52,7 @@ const addTodo = () => {
 
 const editTodoText = (id)=>{
   if(!editText.trim()) return
-   axios.put(`http://localhost:5000/api/todos/${id}` ,{
+   axios.put(`https://complted-todo-app-backend.onrender.com/api/todos/${id}` ,{
     text:editText
   })
   .then(res =>{
@@ -59,7 +64,7 @@ const editTodoText = (id)=>{
 }
 
  const deleteTodo = (id) =>{
-  axios.delete(`http://localhost:5000/api/todos/${id}`)
+  axios.delete(`https://complted-todo-app-backend.onrender.com/api/todos/${id}`)
   .then(() => setTodos(todos.filter(todo => todo._id !== id)))
 }
 
@@ -85,14 +90,14 @@ const startEditing =(todo) =>{
             <div>
               <p className='bg-white mt-3 px-2 py-1 rounded '>No Todo</p>
             </div>
-          ):<div className='w-[500px]'>
+          ):<div className='w-[300px] sm:w-[500px]'>
             <h2 className='mt-2 capitalize text-blue-500'>All task list</h2>
               {
                 todos.map((todo) =>(
                   <div key={todo._id}>
                     { editingTodo === todo._id ? (
                       <div className='flex'>
-                        <input type="text" className=' py-2 rounded mt-3 w-[300px] sm:w-[500px] pl-2  bg-[#f7f7f7]' value={editText} onChange={(e) =>setEditText(e.target.value)}/>
+                        <input type="text" className='outline-none py-2 rounded mt-3 w-[300px] sm:w-[500px] pl-2  bg-[#f7f7f7]' value={editText} onChange={(e) =>setEditText(e.target.value)}/>
                         <div className=' bg-[#f7f7f7] pr-3 mt-3 flex items-center justify-center  gap-3'>
                           <button className='bg-[#b5dafc] rounded-lg w-8 h-8  flex items-center justify-center' onClick={()=>editTodoText(editingTodo)}> <MdOutlineDone/></button>
                           <button className='bg-red-200 w-8 h-8 rounded-lg items-center justify-center flex' onClick={()=>{setEditingTodo(null) ;setEditText('')}}><FaTrash/></button>
