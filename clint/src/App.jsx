@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import './App.css';
 import axios from 'axios';
 
-import AddTodo from './pages/component/AddTodo';
-import AllTodos from './pages/component/AllTodos';
+import AddTodo from './component/AddTodo';
+import AllTodos from './component/AllTodos';
 
 function App() {
   const backend_url ='http://localhost:5000/'
